@@ -1,137 +1,114 @@
-# 🐛 Bug Reports — Parte A
+Trio : Raoní Matheus 230300 + Leonardo Povineli 226225 + Pedro Henrique Lima 228022 
+Data da exploração: 23/04/2026  
+Navegador usado: Google Chrome Versão 140.0.7339.186
+Sistema operacional: Windows 10
 
-> Preencha uma seção completa para cada defeito encontrado. O mínimo
-> exigido é **3 bug reports**. Apague este bloco antes de entregar.
+BUG-001
+Título: Sistema permite salvar tarefa vazia (sem título)
 
-**Dupla:** [Nome 1 + RA] + [Nome 2 + RA]
-**Data da exploração:** [DD/MM/AAAA]
-**Navegador usado:** [Chrome 121 / Firefox 122 / Safari 17 / …]
-**Sistema operacional:** [Windows 11 / macOS 14 / Ubuntu 22.04 / …]
+Severidade: Média
 
----
+Justificativa da severidade: Permite entrada de dados inválidos, comprometendo a integridade das informações 
 
-## BUG-001
+Prioridade: P2
 
-**Título:** [CONTEXTO] Descrição específica e acionável do problema
+Justificativa da prioridade: Afeta diretamente a qualidade dos dados, mas não impede o uso do sistema.
 
-**Severidade:** Crítica | Alta | Média | Baixa
-**Justificativa da severidade:** (1-2 frases explicando o impacto técnico)
+Ambiente:
+Navegador: Chrome Versão 140.0.7339.186
+Sistema Operacional: Windows 10
+Versão da aplicação: TarefaQS v1.0.0
 
-**Prioridade:** P1 | P2 | P3 | P4
-**Justificativa da prioridade:** (1-2 frases explicando a urgência de negócio)
+Passos para reprodução:
+1.	Acesse a aplicação de testes 
+2.	Clique no campo de adicionar tarefa 
+3.	Deixe o campo vazio 
+4.	Clique no botão de adicionar/salvar tarefa
+   
+Resultado esperado:
+O sistema deve impedir a criação da tarefa e exibir uma mensagem de validação (ex: "Título é obrigatório").
 
-**Ambiente:**
-- Navegador: [ex.: Chrome 121.0]
-- Sistema Operacional: [ex.: Windows 11]
-- Versão da aplicação: TarefaQS v1.0.0
+Resultado obtido:
+A tarefa é criada mesmo sem título.
 
-**Passos para reprodução:**
-1. Passo numerado e objetivo
-2. Outro passo claro o suficiente para qualquer pessoa reproduzir
-3. ...
+Evidência:
+<img width="886" height="223" alt="image" src="https://github.com/user-attachments/assets/cddb3e78-b343-439f-b4e8-d76010172cae" />
 
-**Resultado esperado:**
-[O que deveria acontecer segundo o comportamento desejado.]
+Sugestão de causa raiz (opcional):
+Falta de validação de entrada antes de inserir a tarefa na lista.
 
-**Resultado obtido:**
-[O que efetivamente acontece.]
 
-**Evidência:**
-![Descrição da evidência](evidencias/bug-001-captura.png)
 
-> Se preferir anexar um GIF ou arquivo de log, crie uma pasta
-> `evidencias/` ao lado deste arquivo e referencie o arquivo aqui.
 
-**Sugestão de causa raiz (opcional):**
-[Palpite informado — útil para quem vai corrigir.]
+BUG-002
+Título: Lista de tarefas é perdida ao atualizar a página
 
----
+Severidade: Alta
 
-## BUG-002
+Justificativa da severidade: Perda de dados do usuário afeta diretamente a confiabilidade do sistema.
 
-**Título:**
+Prioridade: P1
 
-**Severidade:**
-**Justificativa da severidade:**
+Justificativa da prioridade: Impacta na usabilidade diária e mantenimento da ferramenta por parte do usuário.
 
-**Prioridade:**
-**Justificativa da prioridade:**
+Ambiente:
+Navegador: Chrome Versão 140.0.7339.186
+Sistema Operacional: Windows 10
+Versão da aplicação: TarefaQS v1.0.0
 
-**Ambiente:**
-- Navegador:
-- Sistema Operacional:
-- Versão da aplicação: TarefaQS v1.0.0
+Passos para reprodução:
+1.	Adicionar uma ou mais tarefas 
+2.	Confirmar que elas aparecem na lista 
+3.	Atualizar a página (F5)
+   
+Resultado esperado:
+As tarefas devem permanecer salvas após recarregar a página.
 
-**Passos para reprodução:**
-1.
-2.
-3.
+Resultado obtido:
+Todas as tarefas desaparecem após o refresh.
 
-**Resultado esperado:**
+Evidência:
+antes: <img width="947" height="992" alt="image" src="https://github.com/user-attachments/assets/6dd850fa-607d-4b22-b6fa-535de22d1350" />
 
-**Resultado obtido:**
+depois: <img width="949" height="1036" alt="image" src="https://github.com/user-attachments/assets/66d100c2-a8b3-4592-85cd-ef72f432ce0a" />
 
-**Evidência:**
 
-**Sugestão de causa raiz (opcional):**
 
----
 
-## BUG-003
 
-**Título:**
+BUG-003
+Título: Tarefa continua visível após ser marcada como concluída
 
-**Severidade:**
-**Justificativa da severidade:**
+Severidade: Média
 
-**Prioridade:**
-**Justificativa da prioridade:**
+Justificativa da severidade: A funcionalidade de conclusão não cumpre completamente seu propósito, causando inconsistência na gestão das tarefas.
 
-**Ambiente:**
-- Navegador:
-- Sistema Operacional:
-- Versão da aplicação: TarefaQS v1.0.0
+Prioridade: P2
 
-**Passos para reprodução:**
-1.
-2.
-3.
+Justificativa da prioridade: Impacta uma funcionalidade central do sistema (controle de status das tarefas).
 
-**Resultado esperado:**
+Ambiente:
+Navegador: Chrome Versão 140.0.7339.186
+Sistema Operacional: Windows 10
+Versão da aplicação: TarefaQS v1.0.0
 
-**Resultado obtido:**
+Passos para reprodução:
+1.	Acesse a aplicação 
+2.	Adicione uma nova tarefa 
+3.	Marque a tarefa como concluída (checkbox ou botão equivalente) 
+4.	Observe o comportamento da tarefa na lista
+   
+Resultado esperado:
+Ao marcar como concluída, o sistema deveria:
+•	Remover a tarefa da lista ativa OU 
+•	Aplicar diferenciação clara (ex: riscado, mudança de cor, seção separada) 
 
-**Evidência:**
+Resultado obtido:
+A tarefa permanece visualmente igual às demais, sem indicação clara de que foi concluída.
 
-**Sugestão de causa raiz (opcional):**
+Evidência:
+<img width="955" height="963" alt="image" src="https://github.com/user-attachments/assets/63fa5e36-4b9e-4aa2-8fa6-63c005fafed6" />
 
----
 
-<!-- Para reports adicionais, copie o bloco acima trocando o número. -->
 
----
 
-## ✅ Critérios de qualidade do bug report
-*(Use para conferir antes de entregar)*
-
-- [ ] Título descritivo — outra pessoa entende o problema só pelo título?
-- [ ] Passos são **numerados** e **reproduzíveis** por terceiros?
-- [ ] Há **pelo menos uma evidência** (screenshot, GIF ou log)?
-- [ ] Severidade tem **justificativa explícita**?
-- [ ] Prioridade tem **justificativa explícita**?
-- [ ] Ambiente inclui **navegador + SO**?
-- [ ] "Esperado vs. Obtido" deixa o gap claro?
-
-## ✅ Checklist de qualidade dos reports
-
-Antes de submeter, confirme em cada report:
-
-- [ ] Título é específico e acionável (não `"Não funciona"`).
-- [ ] Passos estão **numerados** e são reproduzíveis por terceiros.
-- [ ] Há **pelo menos uma evidência** por report (imagem, GIF ou log).
-- [ ] Severidade tem **justificativa explícita**.
-- [ ] Prioridade tem **justificativa explícita**.
-- [ ] Ambiente inclui **navegador + SO**.
-- [ ] "Esperado × Obtido" deixa a diferença clara.
-- [ ] Os 3 defeitos reportados cobrem **categorias diferentes**
-      (funcional, UX, validação, persistência, etc.)
