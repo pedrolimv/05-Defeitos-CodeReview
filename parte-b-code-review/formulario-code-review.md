@@ -1,118 +1,131 @@
-# 🔎 Formulário — Parte B
+Trio : Raoní Matheus 230300 + Leonardo Povineli 226225 + Pedro Henrique Lima 228022 
+Data de revisão: 23/04/2026  
 
-> Preencha uma seção por finding. O mínimo esperado é **6 findings**.
+Finding #1
 
-**Dupla:** [Nome 1 + RA] + [Nome 2 + RA]
-**Data da revisão:** [DD/MM/AAAA]
+📍 Linha(s): ~14–16
+🏷 Rótulo: blocker
+📂 Dimensão: Segurança
+⚠️ Severidade: Crítica
 
----
+🐛 Problema:
+A query SQL é construída por concatenação de string com entrada do usuário, permitindo SQL Injection.
 
-### Finding #1
+💡 Sugestão de correção:
 
-**📍 Linha(s):**
-**🏷 Rótulo:** blocker | major | nit | question
-**📂 Dimensão:** Legibilidade | Erros | Segurança | Complexidade | Padrões
-**⚠️ Severidade:** Crítica | Alta | Média | Baixa
-
-**🐛 Problema:**
-
-**💡 Sugestão de correção:**
-
-```javascript
 // ajuste sugerido
-```
+db.executarQuery(
+  'SELECT * FROM usuarios WHERE nome = ?',
+  [nome]
+);
 
-**📚 Referência (opcional):**
 
----
 
-### Finding #2
 
-**📍 Linha(s):**
-**🏷 Rótulo:**
-**📂 Dimensão:**
-**⚠️ Severidade:**
+Finding #2
 
-**🐛 Problema:**
+📍 Linha(s): ~3
+🏷 Rótulo: nit
+📂 Dimensão: Padrões
+⚠️ Severidade: Baixa
 
-**💡 Sugestão de correção:**
+🐛 Problema:
+A constante TIPOS_VALIDOS é declarada, mas não é utilizada para validação em nenhum ponto do código.
 
-```javascript
+💡 Sugestão de correção:
+
 // ajuste sugerido
-```
+if (!TIPOS_VALIDOS.includes(dados.tipo)) {
+  throw new Error('Tipo de usuário inválido');
+}
 
----
+📚 Referência (opcional): boas práticas de validação de entrada
 
----
 
-<!-- Para adiconar as Findings 4, 5 e 6 copie o bloco acima trocando o número... -->
-**⚠️ Severidade:**
 
-**🐛 Problema:**
 
-**💡 Sugestão de correção:**
 
-```javascript
+Finding #3
+
+📍 Linha(s): ~10–12, 27–38
+🏷 Rótulo: major
+📂 Dimensão: Erros
+⚠️ Severidade: Média
+
+🐛 Problema:
+Funções async não possuem tratamento de erro (try/catch), o que pode resultar em falhas não tratadas.
+
+💡 Sugestão de correção:
+
 // ajuste sugerido
-```
+try {
+  return await db.executarQuery('SELECT * FROM usuarios WHERE ativo = 1');
+} catch (err) {
+  logger.error(err);
+  throw err;
+}
 
----
 
-### Finding #4
 
-**📍 Linha(s):**
-**🏷 Rótulo:**
-**📂 Dimensão:**
-**⚠️ Severidade:**
 
-**🐛 Problema:**
 
-**💡 Sugestão de correção:**
 
-```javascript
+Finding #4
+
+📍 Linha(s): ~27–30
+🏷 Rótulo: major
+📂 Dimensão: Erros
+⚠️ Severidade: Média
+
+🐛 Problema:
+O código assume que o usuário sempre existe após buscarPorId. Se retornar null, haverá erro ao acessar propriedades.
+
+💡 Sugestão de correção:
+
 // ajuste sugerido
-```
+if (!u) {
+  throw new Error('Usuário não encontrado');
+}
 
----
 
-### Finding #5
 
-**📍 Linha(s):**
-**🏷 Rótulo:**
-**📂 Dimensão:**
-**⚠️ Severidade:**
 
-**🐛 Problema:**
 
-**💡 Sugestão de correção:**
+Finding #5
 
-```javascript
+📍 Linha(s): ~14–16
+🏷 Rótulo: major
+📂 Dimensão: Segurança
+⚠️ Severidade: Média
+
+🐛 Problema:
+A busca por usuário usa concatenação de string, enquanto outras queries usam abstração do banco, criando inconsistência e risco de segurança.
+
+💡 Sugestão de correção:
+
 // ajuste sugerido
-```
+db.executarQuery(
+  'SELECT * FROM usuarios WHERE nome = ?',
+  [nome]
+);
 
----
 
-### Finding #6
 
-**📍 Linha(s):**
-**🏷 Rótulo:**
-**📂 Dimensão:**
-**⚠️ Severidade:**
 
-**🐛 Problema:**
 
-**💡 Sugestão de correção:**
 
-```javascript
+
+Finding #6
+
+📍 Linha(s): ~27–30
+🏷 Rótulo: nit
+📂 Dimensão: Legibilidade
+⚠️ Severidade: Baixa
+
+🐛 Problema:
+Uso de variável pouco descritiva (u), dificultando leitura e manutenção.
+
+💡 Sugestão de correção:
+
 // ajuste sugerido
-```
-
----
-
-## ✅ Checklist final
-
-- [ ] Há pelo menos 6 findings preenchidas
-- [ ] Cada finding cita linha, dimensão, rótulo e severidade
-- [ ] As sugestões são concretas e acionáveis
-- [ ] Pelo menos uma finding cobre segurança
-- [ ] Pelo menos uma finding cobre complexidade
+const usuario = await db.buscarPorId('usuarios', id);
